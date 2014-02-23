@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -56,6 +57,15 @@ public class ParkActivity extends Activity {
 				} else {
 					new AddressTask().execute();
 				}
+			}
+		});
+		
+		Button btnMap = (Button) findViewById(R.id.btnMap);
+		btnMap.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(ParkActivity.this, MapActivity.class));
 			}
 		});
 	}
