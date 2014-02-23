@@ -8,6 +8,7 @@
 package com.philly.ezpark;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -19,6 +20,8 @@ import android.widget.TextView;
  * The customized adapter for listview in entry menu
  */
 public class ParkingAdapter extends JSONAdapter {
+	
+	private String[] dates = {"","Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 
 	public ParkingAdapter(Context context, JSONArray jsonArray) {
 		super(context, jsonArray);
@@ -33,14 +36,24 @@ public class ParkingAdapter extends JSONAdapter {
             convertView = inflater.inflate(R.layout.item_parking, parent, false);
             
             holder = new ForumMenuHolder();
-            holder.title = (TextView) convertView.findViewById(R.id.txtName);
+            holder.address = (TextView) convertView.findViewById(R.id.txtAddress);
+            holder.remaining = (TextView) convertView.findViewById(R.id.txtRemaining);
+            holder.hours = (TextView) convertView.findViewById(R.id.txtHours);
+            holder.rate = (TextView) convertView.findViewById(R.id.txtRate);
            
             convertView.setTag(holder);
         } else {
         	holder = (ForumMenuHolder) convertView.getTag();
         }
     	
-    	holder.title.setText(getItem(position).optString("address"));
+    	JSONObject item = getItem(position);
+    	
+    	holder.address.setText(item.optString("address"));
+    	holder.remaining.setText("Slots: "+(item.optInt("limit")-item.optInt("count")));
+    	String hours = dates[item.optInt("fromDay")] + " - " + dates[item.optInt("toDay")];
+    	hours += ", " + item.optInt("fromHour") + ":00 - " + item.optInt("toHour")+":00";
+    	holder.hours.setText(hours);
+    	holder.rate.setText("$"+item.optDouble("rate"));
     	
     	return convertView;
     }
@@ -52,5 +65,8 @@ public class ParkingAdapter extends JSONAdapter {
  */
 class ForumMenuHolder
 {
-    TextView title;
+    TextView address;
+    TextView remaining;
+    TextView hours;
+    TextView rate;
 }

@@ -19,7 +19,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ParkActivity extends Activity {
+public class MapActivity extends Activity {
 	
 	ListView listParkings;
 	ParkingAdapter adapter;
@@ -44,7 +44,7 @@ public class ParkActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				if (tvAddress.getText().toString().length() == 0) {
-					gps = new GPSTracker(ParkActivity.this);
+					gps = new GPSTracker(MapActivity.this);
 					if(gps.canGetLocation()){
 						latitude = gps.getLatitude();
 						longitude = gps.getLongitude();
@@ -78,7 +78,7 @@ public class ParkActivity extends Activity {
 
 		@Override
 		protected void onPreExecute() {
-			dialog = ProgressDialog.show(ParkActivity.this, "", "Searching ...");
+			dialog = ProgressDialog.show(MapActivity.this, "", "Searching ...");
 			dialog.setCancelable(false);
 		}
 		@Override
@@ -96,7 +96,7 @@ public class ParkActivity extends Activity {
 		@Override
 		protected void onPostExecute(JSONArray result) {
 			setList(result);
-			dialog.dismiss(); 
+			dialog.dismiss();
 		}
 		
 	}

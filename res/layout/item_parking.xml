@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
     
     <TextView
-        android:id="@+id/txtName"
+        android:id="@+id/txtAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -15,5 +15,32 @@
         android:paddingLeft="10dp"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/txtRemaining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="0"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/txtHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignBottom="@+id/txtAddress"
+        android:layout_marginTop="10dp"
+        android:text="Hours" />
+    
+    <TextView
+        android:id="@+id/txtRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignBottom="@+id/txtAddress"
+        android:layout_marginTop="24dp"
+        android:text="Rate" />
 
 </RelativeLayout>
